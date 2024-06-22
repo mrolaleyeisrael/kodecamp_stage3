@@ -13,10 +13,10 @@ library.addBook(new books_1.Book('To Kill a Mockingbird', 'Harper Lee', '1234567
 library.addUser(new users_1.User('John Doe', '1'));
 library.addUser(new users_1.User('Jane Smith', '2'));
 // Borrow a book
-console.log(library.borrowBook('1', '1234567890')); 
+console.log(library.borrowBook('1', '1234567890')); // true
 // Check if a book is available
-console.log(library.isBookAvailable('1234567890')); 
+console.log(library.isBookAvailable('1234567890')); // false
 // Return a book
-console.log(library.returnBook('1', '1234567890')); 
+console.log(library.returnBook('1', '1234567890')); // true
 // Check if a book is available
-console.log(library.isBookAvailable('1234567890')); 
+console.log(library.isBookAvailable('1234567890')); // true

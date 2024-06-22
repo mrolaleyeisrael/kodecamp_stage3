@@ -21,13 +21,13 @@ export class Library {
    * @param isbn - The ISBN of the book to remove.
    * @returns Whether the book was successfully removed.
    */
-  removeBook(isbn: string): boolean {
+  removeBook(isbn: string): string {
     const index = this.books.findIndex(book => book.isbn === isbn);
     if (index !== -1) {
       this.books.splice(index, 1);
-      return true;
+      return ("Book removed");
     }
-    return false;
+    return ("Book not found");
   }
 
   /**
@@ -54,13 +54,13 @@ export class Library {
    * @param id - The ID of the user to remove.
    * @returns Whether the user was successfully removed.
    */
-  removeUser(id: string): boolean {
+  removeUser(id: string): string {
     const index = this.users.findIndex(user => user.id === id);
     if (index !== -1) {
       this.users.splice(index, 1);
-      return true;
+      return ("User removed!");
     }
-    return false;
+    return ("User not found!");
   }
 
   /**
@@ -80,16 +80,16 @@ export class Library {
    * @param isbn - The ISBN of the book to borrow.
    * @returns Whether the book was successfully borrowed.
    */
-  borrowBook(userId: string, isbn: string): boolean {
+  borrowBook(userId: string, isbn: string): string {
     const user = this.users.find(user => user.id === userId);
     const book = this.books.find(book => book.isbn === isbn && book.isAvailable);
 
     if (user && book) {
       user.borrowedBooks.push(book);
       book.isAvailable = false;
-      return true;
+      return "Book borrowing completed";
     }
-    return false;
+    return "Book borrowing completed";
   }
 
   /**
@@ -98,16 +98,17 @@ export class Library {
    * @param isbn - The ISBN of the book to return.
    * @returns Whether the book was successfully returned.
    */
-  returnBook(userId: string, isbn: string): boolean {
+  returnBook(userId: string, isbn: string): string {
     const user = this.users.find(user => user.id === userId);
     const book = user?.borrowedBooks.find(book => book.isbn === isbn);
 
     if (user && book) {
       user.borrowedBooks = user.borrowedBooks.filter(b => b.isbn !== isbn);
       book.isAvailable = true;
-      return true;
+      return "Book returned successfully";
     }
-    return false;
+
+    return "Book returning failed";
   }
 
   /**
@@ -115,8 +116,8 @@ export class Library {
    * @param isbn - The ISBN of the book to check.
    * @returns Whether the book is available.
    */
-  isBookAvailable(isbn: string): boolean {
+  isBookAvailable(isbn: string): string|boolean {
     const book = this.books.find(book => book.isbn === isbn);
-    return book ? book.isAvailable : false;
+    return book ? book.isAvailable : "Book is not available";
   }
 }

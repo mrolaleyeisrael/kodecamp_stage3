@@ -25,9 +25,9 @@ class Library {
         const index = this.books.findIndex(book => book.isbn === isbn);
         if (index !== -1) {
             this.books.splice(index, 1);
-            return true;
+            return ("Book removed");
         }
-        return false;
+        return ("Book not found");
     }
     /**
      * Searches for books in the library by a query.
@@ -53,9 +53,9 @@ class Library {
         const index = this.users.findIndex(user => user.id === id);
         if (index !== -1) {
             this.users.splice(index, 1);
-            return true;
+            return ("User removed!");
         }
-        return false;
+        return ("User not found!");
     }
     /**
      * Searches for users in the library by a query.
@@ -77,9 +77,9 @@ class Library {
         if (user && book) {
             user.borrowedBooks.push(book);
             book.isAvailable = false;
-            return true;
+            return "Book borrowing completed";
         }
-        return false;
+        return "Book borrowing completed";
     }
     /**
      * Allows a user to return a book to the library.
@@ -93,9 +93,9 @@ class Library {
         if (user && book) {
             user.borrowedBooks = user.borrowedBooks.filter(b => b.isbn !== isbn);
             book.isAvailable = true;
-            return true;
+            return "Book returned successfully";
         }
-        return false;
+        return "Book returning failed";
     }
     /**
      * Checks if a book is available for borrowing.
@@ -104,7 +104,7 @@ class Library {
      */
     isBookAvailable(isbn) {
         const book = this.books.find(book => book.isbn === isbn);
-        return book ? book.isAvailable : false;
+        return book ? book.isAvailable : "Book is not available";
     }
 }
 exports.Library = Library;
